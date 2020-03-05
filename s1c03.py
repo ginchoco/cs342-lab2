@@ -13,5 +13,5 @@ def caesarDecrypt():
 def scoreText():
     pass
 
-def solveS1C3():
+def solveS1C03():
     pass

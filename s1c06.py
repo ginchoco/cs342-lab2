@@ -4,5 +4,5 @@
 def editDistance():
     pass
 
-def solveS1C6():
+def solveS1C06():
     pass

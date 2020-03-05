@@ -1,6 +1,6 @@
 
 
 
-def solveS1C4():
+def solveS1C04():
     pass
 
