@@ -1,8 +1,10 @@
-import binascii
+import binascii as b
 
 def b64ToHex(b64String):
-    binary_rep = b.a2b_base64(b64String)
-    return b.hexlify(binary_rep)
+    # given binary, produce hex.
+    return b.hexlify(b.a2b_base64(b64String))
+
 
 def hexToB64(hexString):
-    return binascii.hexlify(binascii.a2b_base64(hexString))
+    return b.b2a_base64(b.unhexlify(hexString), newline=False)
+    # removes newline
