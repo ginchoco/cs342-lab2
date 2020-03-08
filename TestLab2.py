@@ -55,10 +55,13 @@ class TestLab2(unittest.TestCase):
         (is the return type of this method correct?) to specific cases (is the xor
         of these two specific byte strings equal to the correct byte string?).
 
-        To generate specific cases, I'd suggest either using very small examples 
+        To generate specific cases, I'd suggest either using very small examples
         you can work by hand, or generate the test cases using other code you write
         or online calculators.
         '''
+        test1 = "1c0111001f010100061a024b53535009181c"
+
+
         self.assertEqual(True, False)
 
     @unittest.skip('Not yet implemented')
@@ -76,7 +79,7 @@ class TestLab2(unittest.TestCase):
 
     '''
        ********
-       Remember! You can and should add more test methods to this file to test 
+       Remember! You can and should add more test methods to this file to test
        other helper methods that you write in the course of this lab.
        ********
     '''
