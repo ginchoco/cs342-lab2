@@ -5,43 +5,42 @@ and how they fit together.
 '''
 from s1c02 import xor
 
-def caesarEncrypt(str, key):
-    long_key = key * len(str)
-    return xor(str, long_key)
+def caesarEncrypt(s, key):
+    long_key = key * len(s)
+    return xor(s, long_key)
 
 
-def caesarDecrypt(str, key):
-    long_key = key * len(str)
-    # print("str" + str)
-    print("key" + key)
-    return xor(str, long_key) #xor takes in 2 bytes to XOR
+def caesarDecrypt(s, key):
+    long_key = key * len(s)
+    return xor(s, long_key) #xor takes in 2 bytes to XOR
 
 
-def scoreText(str):
+def scoreText(byte_input): #inputs bytes
     count = 0
-    # dict = {"ETAOIN SHRDLU"}
-    s = str.decode()
-    for b in s:
-        if s in "ETAOIN SHRDLU etaoin shrdlu":
-            count += 1
-        elif s < 'A' or s > 'z':
-            count -=10
-    return count
+
+    try:
+        s = byte_input.decode() #convert to string
+        for b in s:
+            if b in "ETAOIN SHRDLU etaoin shrdlu":
+                count += 1
+            elif b < 'A' or s > 'z':
+                count -=10
+        return count
+    except:
+        return -1
+
 
 # find key with max score
-def solveS1C03(s):
-    # byte_dict = {}
+def solveS1C03(s): #input bytes, unhexlify(string)
     max_score = 0
     max_key = bytes([0])
     for i in range(0, 256):
         # convert int to byte
         key = bytes([i])
-        # key_str = (i)
-
-        # byte_dict.add(key, scoreText(caesarDecrypt(s, key)))
-        if scoreText(caesarDecrypt(s, key)) > max_score:
-            max_score = scoreText(caesarDecrypt(s, key))
+        this_score = scoreText(caesarDecrypt(s, key))
+        if this_score > max_score:
+            max_score = this_score
             max_key = key
 
-    print(caesarDecrypt(s, max_key))
+    # print(caesarDecrypt(s, max_key))
     return max_key
