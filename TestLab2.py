@@ -1,4 +1,5 @@
 import unittest
+import binascii
 
 from s1c01 import b64ToHex, hexToB64
 from s1c02 import xor
@@ -27,7 +28,7 @@ class TestLab2(unittest.TestCase):
         ]
         for hexString, b64String in testCases:
             self.assertEqual(hexToB64(hexString), b64String)
-            self.assertEqual(type(hexToB64(hexString)), str)
+
 
     '''One more example.'''
 
@@ -46,7 +47,7 @@ class TestLab2(unittest.TestCase):
         for hexString, b64String in testCases:
             self.assertEqual(b64ToHex(b64String), hexString)
 
-    @unittest.skip('Not yet implemented')
+    # @unittest.skip('Not yet implemented')
     def test_s1c02_xor(self):
         '''
         Starting here, write your own tests. You can generate tests in a variety
@@ -59,22 +60,37 @@ class TestLab2(unittest.TestCase):
         you can work by hand, or generate the test cases using other code you write
         or online calculators.
         '''
-        test1 = "1c0111001f010100061a024b53535009181c"
+        testCases = [
+            ("1c0111001f010100061a024b53535009181c",
+            "686974207468652062756c6c277320657965",
+            "746865206b696420646f6e277420706c6179") #expected_res
+            ]
 
+        for str1, str2, expected_res in testCases: # call unhexlify on strings converted to bytes
+            self.assertEqual(xor(binascii.unhexlify(str1), binascii.unhexlify(str2)), binascii.unhexlify(expected_res))
 
-        self.assertEqual(True, False)
-
-    @unittest.skip('Not yet implemented')
+    # @unittest.skip('Not yet implemented')
     def test_s1c03_caesarEncrypt(self):
-        self.assertEqual(True, False)
+        testCases = [
+        (b"Cooking MC's like a pound of bacon", b'X', "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")]
+        for plaintext, k, ciphertext in testCases:
+            self.assertEqual(caesarEncrypt(plaintext, k), binascii.unhexlify(ciphertext))
 
-    @unittest.skip('Not yet implemented')
+    # @unittest.skip('Not yet implemented')
     def test_s1c03_caesarDecrypt(self):
-        self.assertEqual(True, False)
+        testCases = [("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736", b'X')]
+        for encrypted, k in testCases:
+            self.assertEqual(solveS1C03(binascii.unhexlify(encrypted)), k)
+        # s.solveS1C03(bin.unhexlify("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"))
 
-    @unittest.skip('Not yet implemented')
+
+    # @unittest.skip('Not yet implemented')
     def test_s1c03_scoreText(self):
-        self.assertEqual(True, False)
+        testCases = [
+        (b"ETAOIN SHRDLU etaoin shrdlu", len("ETAOIN SHRDLU etaoin shrdlu"))
+        ]
+        for t, count in testCases:
+            self.assertEqual(scoreText(t), count)
 
 
     '''
@@ -84,16 +100,18 @@ class TestLab2(unittest.TestCase):
        ********
     '''
 
-
+    '''
     @unittest.skip('Not yet implemented')
     def test_s1c03_solveS1C3(self):
-        '''
+
         You might find that it's less clear what the testable contract of the methods
         that just solve the challenges is. If you choose, you can decide not to use
         this test method, and instead just test the helper methods you write to make
         solveSXCY() methods work.
-        '''
+
         self.assertEqual(True, False)
+
+    '''
 
     @unittest.skip('Not yet implemented')
     def test_s1c04_solveS1C4(self):
