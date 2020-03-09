@@ -11,15 +11,21 @@ def caesarEncrypt(str, key):
 
 
 def caesarDecrypt(str, key):
-    long_key = key * (len(str)/3)
-    return xor(str, long_key)
+    long_key = key * len(str)
+    # print("str" + str)
+    print("key" + key)
+    return xor(str, long_key) #xor takes in 2 bytes to XOR
 
 
 def scoreText(str):
     count = 0
-    for s in str:
-        if s == 'e':
+    # dict = {"ETAOIN SHRDLU"}
+    s = str.decode()
+    for b in s:
+        if s in "ETAOIN SHRDLU etaoin shrdlu":
             count += 1
+        elif s < 'A' or s > 'z':
+            count -=10
     return count
 
 # find key with max score
@@ -29,15 +35,13 @@ def solveS1C03(s):
     max_key = bytes([0])
     for i in range(0, 256):
         # convert int to byte
-        # key = bytes([i])
-        key_str = hex(i)
-
-        # maybe convert key to string for caesarDecrypt?
+        key = bytes([i])
+        # key_str = (i)
 
         # byte_dict.add(key, scoreText(caesarDecrypt(s, key)))
-        if scoreText(caesarDecrypt(s, key_str)) > max_score:
-            max_score = scoreText(caesarDecrypt(s, key_str))
-            max_key = key_str
+        if scoreText(caesarDecrypt(s, key)) > max_score:
+            max_score = scoreText(caesarDecrypt(s, key))
+            max_key = key
 
     print(caesarDecrypt(s, max_key))
     return max_key
