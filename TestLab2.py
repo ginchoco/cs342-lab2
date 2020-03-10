@@ -113,7 +113,7 @@ class TestLab2(unittest.TestCase):
 
     '''
 
-    @unittest.skip('Not yet implemented')
+    #@unittest.skip('Not yet implemented')
     def test_s1c04_solveS1C4(self):
         testCases = [("set1ch4.txt", b'Now that the party is jumping')]
         for filename, ans in testCases: 
