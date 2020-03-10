@@ -17,8 +17,8 @@ def caesarDecrypt(s, key):
 
 def scoreText(byte_input): #inputs bytes
     count = 0
-
-    try:
+    
+    try: # try to decode the byte_input
         s = byte_input.decode() #convert to string
         for b in s:
             if b in "ETAOIN SHRDLU etaoin shrdlu":
@@ -26,21 +26,21 @@ def scoreText(byte_input): #inputs bytes
             elif b < 'A' or s > 'z':
                 count -=10
         return count
-    except:
+    except: # if it's an unprintable byte_input then it's not english text
         return -1
 
 
 # find key with max score
 def solveS1C03(s): #input bytes, unhexlify(string)
     max_score = 0
-    max_key = bytes([0])
+    max_key = bytes([0]) #initial key
     for i in range(0, 256):
         # convert int to byte
-        key = bytes([i])
+        key = bytes([i]) #create byte objects for each int
         this_score = scoreText(caesarDecrypt(s, key))
         if this_score > max_score:
             max_score = this_score
             max_key = key
 
     # print(caesarDecrypt(s, max_key))
-    return max_key #testing
+    return max_key 
