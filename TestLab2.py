@@ -115,7 +115,9 @@ class TestLab2(unittest.TestCase):
 
     @unittest.skip('Not yet implemented')
     def test_s1c04_solveS1C4(self):
-        self.assertEqual(True, False)
+        testCases = [("set1ch4.txt", b'Now that the party is jumping')]
+        for filename, ans in testCases: 
+            self.assertEqual(solveS1C04(filename), ans)
 
     @unittest.skip('Not yet implemented')
     def test_s1c05_vigenereEncrypt(self):
