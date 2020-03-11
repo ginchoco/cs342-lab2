@@ -18,9 +18,6 @@ def solveS1C04(fileStr):
             if current_score > top_score:
                 top_score = current_score
                 pt = plaintext
-                
+        f.close()
+
         return pt.strip()
-            
-
-
-

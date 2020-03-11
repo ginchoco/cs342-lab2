@@ -116,16 +116,24 @@ class TestLab2(unittest.TestCase):
     #@unittest.skip('Not yet implemented')
     def test_s1c04_solveS1C4(self):
         testCases = [("set1ch4.txt", b'Now that the party is jumping')]
-        for filename, ans in testCases: 
+        for filename, ans in testCases:
             self.assertEqual(solveS1C04(filename), ans)
 
-    @unittest.skip('Not yet implemented')
+    # @unittest.skip('Not yet implemented')
     def test_s1c05_vigenereEncrypt(self):
-        self.assertEqual(True, False)
+        testCases = [(b"Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal",
+        b'0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f')
+        ]
+        for testStr, res in testCases:
+            self.assertEqual(binascii.hexlify(vigenereEncrypt(testStr)), res)
 
-    @unittest.skip('Not yet implemented')
+    # @unittest.skip('Not yet implemented/')
     def test_s1c05_vigenereDecrypt(self):
-        self.assertEqual(True, False)
+        testCases = [(b'0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f',
+        b"Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal")
+        ]
+        for testBytes, res in testCases:
+            self.assertEqual(vigenereDecrypt(binascii.unhexlify(testBytes)), res)
 
     @unittest.skip('Not yet implemented')
     def test_s1c06_editDistance(self):
