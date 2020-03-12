@@ -6,7 +6,7 @@ from s1c02 import xor
 from s1c03 import solveS1C03, caesarEncrypt, caesarDecrypt, scoreText
 from s1c04 import solveS1C04
 from s1c05 import vigenereEncrypt, vigenereDecrypt
-from s1c06 import editDistance, solveS1C06
+from s1c06 import editDistance, getKeySize, solveS1C06
 from s1c07 import AES_ECB_encrypt, AES_ECB_decrypt
 from s1c08 import solveS1C08
 
@@ -133,11 +133,22 @@ class TestLab2(unittest.TestCase):
         b"Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal")
         ]
         for testBytes, res in testCases:
-            self.assertEqual(vigenereDecrypt(binascii.unhexlify(testBytes)), res)
+            self.assertEqual(vigenereDecrypt(binascii.unedhexlify(testBytes)), res)
 
     @unittest.skip('Not yet implemented')
     def test_s1c06_editDistance(self):
-        self.assertEqual(True, False)
+        testCases = [ (b"this is a test", b"wokka wokka!!!", 37)
+
+        ]
+        for s1, s2, dist in testCases:
+            self.assertEqual(editDistance(s1, s2), dist)
+
+
+    def test_s1c06_getKeySize(self):
+        testCases = [(b'0b3637272a2b2e63622c2e69692a23693a2a3c6324202d623d63343c2a26226324272765272a282b2f20430a652e2c652a3124333a653e2b2027630c692b20283165286326302e27282f',
+        3)]
+        for testStr, res in testCases:
+            self.assertEqual(getKeySize(testStr), res)
 
     @unittest.skip('Not yet implemented')
     def test_s1c06_solveS1C6(self):
